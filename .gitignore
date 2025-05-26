@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-
-
+# Custom
+*.jpg
+*.jpeg
+*.png
+*.svg
