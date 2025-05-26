@@ -2,13 +2,14 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import { Link } from 'react-router-dom'
 import styles from './BaseNavbar.module.css'
 
 export const BaseNavbar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid={true} className="px-4 py-2">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to="/">
           <img
             src="/assets/images/navbar-brand.svg"
             alt="Brand"
