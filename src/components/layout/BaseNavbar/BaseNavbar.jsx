@@ -7,7 +7,7 @@ import styles from './BaseNavbar.module.css'
 
 export const BaseNavbar = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand={false} fixed="top" className="bg-body-tertiary">
       <Container fluid={true} className="px-4 py-2">
         <Navbar.Brand as={Link} to="/">
           <img
