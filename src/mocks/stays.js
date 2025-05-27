@@ -4,9 +4,11 @@ export const stays = [
     name: 'Cabaña en Bariloche',
     description: 'Vista al lago y rodeada de naturaleza.',
     images: [
-      '/assets/images/mocks/stays/1.1.jpg'
+      '/assets/images/mocks/stays/1.1.jpg',
     ],
     pricePerNight: 15000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ export const stays = [
       '/assets/images/mocks/stays/2.1.jpg'
     ],
     pricePerNight: 30000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 3,
@@ -25,6 +29,8 @@ export const stays = [
       '/assets/images/mocks/stays/3.1.jpg'
     ],
     pricePerNight: 18000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ export const stays = [
       '/assets/images/mocks/stays/4.1.jpg'
     ],
     pricePerNight: 14000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 5,
@@ -43,6 +51,8 @@ export const stays = [
       '/assets/images/mocks/stays/5.1.jpg'
     ],
     pricePerNight: 16000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 6,
@@ -52,6 +62,8 @@ export const stays = [
       '/assets/images/mocks/stays/6.1.jpg'
     ],
     pricePerNight: 17000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 7,
@@ -61,6 +73,8 @@ export const stays = [
       '/assets/images/mocks/stays/7.1.jpg'
     ],
     pricePerNight: 19000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 8,
@@ -70,6 +84,8 @@ export const stays = [
       '/assets/images/mocks/stays/8.1.jpg'
     ],
     pricePerNight: 13000,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 9,
@@ -79,6 +95,8 @@ export const stays = [
       '/assets/images/mocks/stays/9.1.jpg'
     ],
     pricePerNight: 15500,
+    isFeatured: true,
+    rating: 4.8,
   },
   {
     id: 10,
@@ -88,5 +106,7 @@ export const stays = [
       '/assets/images/mocks/stays/10.1.jpg'
     ],
     pricePerNight: 14500,
+    isFeatured: true,
+    rating: 4.8,
   }
 ]

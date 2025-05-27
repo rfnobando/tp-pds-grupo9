@@ -23,7 +23,7 @@ export const Home = () => {
               <Card.Img variant="top" src={item.images[0]} />
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
-                <Card.Text>{formatNumberToARS(item.pricePerNight)} por noche</Card.Text>
+                <Card.Text>{formatNumberToARS(item.pricePerNight)} por noche - {item.rating} estrellas</Card.Text>
               </Card.Body>
             </Card>
           </Col>
