@@ -19,7 +19,7 @@ export const Home = () => {
         {stays.map((item) => (
           <Col key={item.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex">
             <Card className="flex-fill d-flex flex-column">
-              <Card.Img variant="top" src={item.image} />
+              <Card.Img variant="top" src={item.images[0]} />
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>{item.description}</Card.Text>
