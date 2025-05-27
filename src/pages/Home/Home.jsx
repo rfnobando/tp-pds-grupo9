@@ -1,5 +1,6 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { stays } from '@/mocks'
+import { formatNumberToARS } from '@/utils'
 
 export const Home = () => {
   return (
@@ -22,7 +23,7 @@ export const Home = () => {
               <Card.Img variant="top" src={item.images[0]} />
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
-                <Card.Text>{item.description}</Card.Text>
+                <Card.Text>{formatNumberToARS(item.pricePerNight)} por noche</Card.Text>
               </Card.Body>
             </Card>
           </Col>
