@@ -9,12 +9,12 @@ export const Home = () => {
   const [minPrecio, setMinPrecio] = useState('')
   const [maxPrecio, setMaxPrecio] = useState('')
 
-  // Filtrado solo por el nombre/título (name)
+  // Filtrado por 'name' y rango de precios
   const staysFiltrados = stays.filter(item => {
     const coincideNombre = !busqueda || item.name.toLowerCase().includes(busqueda.toLowerCase())
     const precio = item.pricePerNight
-    const cumpleMin = !minPrecio || precio >= parseInt(minPrecio)
-    const cumpleMax = !maxPrecio || precio <= parseInt(maxPrecio)
+    const cumpleMin = !minPrecio || precio >= parseFloat(minPrecio)
+    const cumpleMax = !maxPrecio || precio <= parseFloat(maxPrecio)
     return coincideNombre && cumpleMin && cumpleMax
   })
 
@@ -22,27 +22,33 @@ export const Home = () => {
     <Container>
       {/* Barra de búsqueda */}
       <Row className="mb-4">
+        <Col className="mb-4" xs="12" md="8">
+          <h2 className="fw-bold display-7 mb-1">Encuentra el lugar ideal para tu estadía</h2>
+          <p className="text-muted mb-0">
+            Descubre opciones únicas para tu próxima estadía, desde cabañas en la montaña hasta departamentos en la ciudad.
+          </p>
+        </Col>
         <Col xs="12" md="6" lg="7">
           <SearchBar value={busqueda} onChange={setBusqueda} />
         </Col>
-        <Col xs="6" md="3" lg="2">
+        <Col className="mb-3" xs="6" md="3" lg="2">
           <Form.Control
+            className="form-control form-control-lg"
             type="number"
             min={0}
             value={minPrecio}
             placeholder="Precio mínimo"
             onChange={e => setMinPrecio(e.target.value)}
-            className="mb-2"
           />
         </Col>
         <Col xs="6" md="3" lg="2">
           <Form.Control
+            className="form-control form-control-lg"
             type="number"
             min={0}
             value={maxPrecio}
             placeholder="Precio máximo"
             onChange={e => setMaxPrecio(e.target.value)}
-            className="mb-2"
           />
         </Col>
       </Row>
@@ -50,12 +56,6 @@ export const Home = () => {
       <Row className="align-items-center justify-content-between mb-4">
         <Col xs="12" md="8">
           <h2 className="fw-bold display-7 mb-1">Alojamientos destacados en Argentina</h2>
-          <p className="text-muted mb-0">
-            Encuentra lugares únicos para tu próxima estadía, desde cabañas en la montaña hasta departamentos en la ciudad.
-          </p>
-        </Col>
-        <Col xs="12" md="4" className="text-md-end mt-3 mt-md-0">
-          <Button variant="primary">Explorar Más</Button>
         </Col>
       </Row>
       <Row>
@@ -77,7 +77,13 @@ export const Home = () => {
         ))}
         {staysFiltrados.length === 0 && (
           <Col>
-            <div className="text-center mt-5 text-muted">No se encontraron alojamientos con esos filtros.</div>
+            <div className="text-center mt-5 text-muted">
+              <h4>No se encontraron alojamientos que coincidan con tus criterios 😕</h4>
+              <p>
+                No te preocupes, hay muchas otras opciones disponibles.<br />
+                Intenta ajustar los filtros o buscar en otra zona para descubrir alojamientos interesantes.
+              </p>
+            </div>
           </Col>
         )}
       </Row>
