@@ -14,7 +14,6 @@ export const Home = () => {
 
   const handleARSInputChange = (setValue) => (values) => {
     setValue(values.floatValue !== undefined ? values.value : '')
-    console.log(values)
   }
 
   // Filtrado por 'city', rango de precios y destacados
