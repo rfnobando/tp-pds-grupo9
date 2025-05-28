@@ -20,7 +20,7 @@ export const BaseTemplate = () => {
   return (
     <div className={styles.container}>
       <BaseNavbar />
-      <main className={styles.outletContainer}>
+      <main className={`px-3 ${styles.outletContainer}`}>
         <Outlet />
       </main>
       <BaseFooter />
