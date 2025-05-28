@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, Form, Badge } from 'react-bootstrap'
 import { stays } from '@/mocks'
 import { formatNumberToARS } from '@/utils'
 import { SearchBar } from '@/components/common'
+import { ARSInput } from '@/components/ui/inputs'
 
 export const Home = () => {
   const [busqueda, setBusqueda] = useState('')
@@ -10,6 +11,11 @@ export const Home = () => {
   const [maxPrecio, setMaxPrecio] = useState('80000')
   const [onlyFeatured, setOnlyFeatured] = useState(false)
   const [showTopRatedFirst, setShowTopRatedFirst] = useState(false)
+
+  const handleARSInputChange = (setValue) => (values) => {
+    setValue(values.floatValue !== undefined ? values.value : '')
+    console.log(values)
+  }
 
   // Filtrado por 'city', rango de precios y destacados
   const staysFiltrados = stays.filter(item => {
@@ -49,26 +55,26 @@ export const Home = () => {
         <Col className="mb-3" xs="6" md="3" lg="2">
           <Form.Group controlId="minPrice">
             <Form.Label className="fw-semibold">Precio mínimo</Form.Label>
-            <Form.Control
+            <ARSInput
               className="form-control form-control-lg"
-              type="number"
               min={0}
               value={minPrecio}
-              placeholder="0"
-              onChange={e => setMinPrecio(e.target.value)}
+              placeholder="$ 0,00"
+              prefix="$ "
+              onValueChange={handleARSInputChange(setMinPrecio)}
             />
           </Form.Group>
         </Col>
         <Col xs="6" md="3" lg="2">
           <Form.Group controlId="maxPrice">
             <Form.Label className="fw-semibold">Precio máximo</Form.Label>
-            <Form.Control
+            <ARSInput
               className="form-control form-control-lg"
-              type="number"
               min={0}
               value={maxPrecio}
-              placeholder="100000"
-              onChange={e => setMaxPrecio(e.target.value)}
+              placeholder="$ 80.000,00"
+              prefix="$ "
+              onValueChange={handleARSInputChange(setMaxPrecio)}
             />
           </Form.Group>
         </Col>
@@ -114,7 +120,7 @@ export const Home = () => {
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>
-                    {formatNumberToARS(item.pricePerNight)} por noche · ★ {item.rating}
+                    {formatNumberToARS(item.pricePerNight)} por noche · ★ {item.rating.toFixed(1)}
                   </Card.Text>
                   <Card.Text>
                     {item.description}
