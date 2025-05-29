@@ -1,2 +1,2 @@
 export { Home } from './Home/Home'
-import 'bootstrap/dist/css/bootstrap.min.css';
+export { StayDetail } from './StayDetail/StayDetail'

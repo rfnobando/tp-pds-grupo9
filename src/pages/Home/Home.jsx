@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Container, Row, Col, Card, Button, Form, Badge } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Container, Row, Col, Card, Form, Badge } from 'react-bootstrap'
 import { stays } from '@/mocks'
 import { formatNumberToARS } from '@/utils'
 import { SearchBar } from '@/components/common'
 import { ARSInput } from '@/components/ui/inputs'
+
 
 export const Home = () => {
   const [busqueda, setBusqueda] = useState('')
@@ -55,6 +57,7 @@ export const Home = () => {
           <Form.Group controlId="minPrice">
             <Form.Label className="fw-semibold">Precio mínimo</Form.Label>
             <ARSInput
+              id="minPrice"
               className="form-control form-control-lg"
               min={0}
               value={minPrecio}
@@ -68,6 +71,7 @@ export const Home = () => {
           <Form.Group controlId="maxPrice">
             <Form.Label className="fw-semibold">Precio máximo</Form.Label>
             <ARSInput
+              id="maxPrice"
               className="form-control form-control-lg"
               min={0}
               value={maxPrecio}
@@ -105,7 +109,11 @@ export const Home = () => {
         {staysFiltrados.length > 0 ? (
           staysFiltrados.map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex">
-              <Card className="flex-fill d-flex flex-column">
+              <Card
+                as={Link}
+                to={`/stays/${item.id}`}
+                className="flex-fill d-flex flex-column text-decoration-none text-reset"
+              >
                 {item.isFeatured && (
                   <Badge
                     bg="warning"
@@ -130,7 +138,7 @@ export const Home = () => {
           ))
         ) : (
           <Col>
-            <div className="text-center mt-5 text-muted">
+            <div className="text-center mt-3 mb-5 text-muted">
               <h4>No se encontraron alojamientos que coincidan con tus criterios 😕</h4>
               <p>
                 No te preocupes, hay muchas otras opciones disponibles.<br />
