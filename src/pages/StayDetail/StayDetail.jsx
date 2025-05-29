@@ -1,11 +1,12 @@
+import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { stays } from '@/mocks';
-import { hosts } from '@/mocks/hosts';
-import { Container, Row, Col, Carousel, Button, Form, Alert, Badge, Image, InputGroup, Modal } from 'react-bootstrap';
-import { useState, useMemo } from 'react';
+import { hosts } from '@/mocks';
+import { Container, Row, Col, Carousel, Button, Form, Alert, Badge, InputGroup, Modal } from 'react-bootstrap';
+import { SuccessModal } from '@/components/modals';
 import { formatNumberToARS } from '@/utils';
 
-function calcularNoches(desde, hasta) {
+function calcularNoches (desde, hasta) {
   if (!desde || !hasta) return 0;
   const d1 = new Date(desde);
   const d2 = new Date(hasta);
@@ -13,7 +14,7 @@ function calcularNoches(desde, hasta) {
   return diff > 0 ? diff : 0;
 }
 
-export default function AlojamientoDetalle() {
+export const StayDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const alojamiento = stays.find(a => a.id === Number(id));
@@ -46,16 +47,11 @@ export default function AlojamientoDetalle() {
     );
   }
 
-  const handleContactar = () => {
-    setContactado(true);
-    setTimeout(() => setContactado(false), 2000);
-  };
-
   const handleEnviarMensaje = () => {
     if (mensaje.trim()) {
       setContactado(true);
       setShowContact(false);
-      setTimeout(() => setContactado(false), 2000);
+      setMensaje('')
     } else {
       alert("Por favor, escriba un mensaje.");
     }
@@ -77,17 +73,26 @@ export default function AlojamientoDetalle() {
     if (metodoPago && aceptarTerminos) {
       setReservado(true);
       setShowPago(false);
-      setTimeout(() => setReservado(false), 2000);
+      setMetodoPago('')
+      setAceptarTerminos(false)
     } else {
       alert("Por favor, elija un método de pago y acepte los términos y condiciones.");
     }
   };
 
+  const handleCloseSuccessReservationModal = () => {
+    setReservado(false)
+  }
+
+  const handleCloseSuccessContactModal = () => {
+    setContactado(false)
+  }
+
   return (
     <Container fluid className="py-4" style={{ background: '#fafafa', minHeight: '100vh' }}>
       <Row className="justify-content-center">
         <Col xs={12} md={10} lg={9}>
-          <Button variant="outline-secondary" onClick={() => navigate(-1)} className="mb-4" style={{ display: 'flex', alignItems: 'center', borderRadius: 20, boxShadow: '0 2px 8px #0001', background: '#fff' }}>
+          <Button variant="outline-secondary" onClick={() => navigate(-1)} className="mb-4" style={{ display: 'flex', alignItems: 'center', borderRadius: 20, boxShadow: '0 2px 8px #0001' }}>
             <span style={{ marginRight: '0.5rem', fontSize: 20 }}>&larr;</span> Volver
           </Button>
           <Row className="g-4">
@@ -107,7 +112,7 @@ export default function AlojamientoDetalle() {
                 <h5 className="fw-bold mb-3">Anfitrión</h5>
                 {host && (
                   <div className="d-flex align-items-center gap-3">
-                    <div style={{ width: 48, height: 48, borderRadius: '50%', background: '#FF5A5F22', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 22, color: '#FF5A5F' }}>
+                    <div style={{ width: 48, height: 48, flexShrink: 0, borderRadius: '50%', background: '#FF5A5F22', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 22, color: '#FF5A5F' }}>
                       {host.name[0]}
                     </div>
                     <div>
@@ -127,8 +132,8 @@ export default function AlojamientoDetalle() {
                 <p className="mb-1"><strong>Precio por noche:</strong> {formatNumberToARS(alojamiento.pricePerNight)}</p>
                 <p className="mb-1"><strong>Calificación:</strong> ★ {alojamiento.rating}</p>
                 <p className="mt-3 mb-4" style={{ color: '#717171' }}>{alojamiento.description}</p>
-                <Button variant="secondary" className="me-2 mb-3" onClick={() => setShowContact(true)} disabled={contactado} style={{ backgroundColor: '#767676', color: 'white', borderRadius: 12, boxShadow: '0 2px 8px #0001' }}>
-                  {contactado ? '¡Mensaje enviado!' : 'Contactar al anfitrión'}
+                <Button variant="secondary" className="me-2 mb-3" onClick={() => setShowContact(true)} style={{ backgroundColor: '#767676', color: 'white', borderRadius: 12, boxShadow: '0 2px 8px #0001' }}>
+                  Contactar al anfitrión
                 </Button>
                 <Form onSubmit={handleReservar} className="mb-2">
                   <Form.Group className="mb-2" controlId="fechaDesde">
@@ -151,7 +156,6 @@ export default function AlojamientoDetalle() {
                     Reservar
                   </Button>
                 </Form>
-                {reservado && <Alert variant="success">¡Reserva realizada con éxito!</Alert>}
               </div>
             </Col>
           </Row>
@@ -202,7 +206,13 @@ export default function AlojamientoDetalle() {
           <Button variant="danger" onClick={handleConfirmarPago} disabled={!metodoPago || !aceptarTerminos} style={{ backgroundColor: '#FF5A5F', color: 'white' }}>Confirmar</Button>
         </Modal.Footer>
       </Modal>
-
+      {/* Modal de reserva exitosa */}
+      <SuccessModal
+        isOpen={reservado}
+        onClose={handleCloseSuccessReservationModal}
+        title="Título modal reserva"
+        body="Cuerpo del modal"
+      />
       {/* Modal de Contacto (ContactModal) */}
       <Modal show={showContact} onHide={() => setShowContact(false)} centered>
         <Modal.Header closeButton>
@@ -219,6 +229,13 @@ export default function AlojamientoDetalle() {
           <Button variant="primary" onClick={handleEnviarMensaje} disabled={!mensaje.trim()}>Enviar</Button>
         </Modal.Footer>
       </Modal>
+      {/* Modal de contacto exitoso */}
+      <SuccessModal
+        isOpen={contactado}
+        onClose={handleCloseSuccessContactModal}
+        title="Título modal contacto"
+        body="Cuerpo del modal"
+      />
     </Container>
   );
 } 

@@ -1,13 +1,16 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { BaseTemplate } from './templates'
-import { Home, AlojamientoDetalle } from './pages'
+import { Home, StayDetail } from './pages'
 
 export default function App () {
   return (
     <Routes>
       <Route path="/" element={<BaseTemplate />}>
         <Route index element={<Home />} />
-        <Route path="alojamiento/:id" element={<AlojamientoDetalle />} />
+        <Route path="stays">
+          <Route index element={<Navigate to="/" replace />} />
+          <Route path=":id" element={<StayDetail />} />
+        </Route>
       </Route>
     </Routes>
   )
