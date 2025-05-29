@@ -169,7 +169,7 @@ export const StayDetail = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="mb-2 p-2 border rounded bg-light">
-            <div className="d-flex justify-content-between"><span>{noches} noches x {formatNumberToARS(alojamiento.pricePerNight)}</span><span>{formatNumberToARS(subtotal)}</span></div>
+            <div className="d-flex justify-content-between"><span>{noches} {noches === 1 ? 'noche' : 'noches'} x {formatNumberToARS(alojamiento.pricePerNight)}</span><span>{formatNumberToARS(subtotal)}</span></div>
             <div className="d-flex justify-content-between"><span>Tarifa de servicio</span><span>{formatNumberToARS(tarifaServicio)}</span></div>
             <div className="d-flex justify-content-between"><span>Tarifa de limpieza</span><span>{formatNumberToARS(tarifaLimpieza)}</span></div>
             <hr className="my-2" />
@@ -210,8 +210,8 @@ export const StayDetail = () => {
       <SuccessModal
         isOpen={reservado}
         onClose={handleCloseSuccessReservationModal}
-        title="Título modal reserva"
-        body="Cuerpo del modal"
+        title="¡Reserva confirmada!"
+        body="Tu reserva fue realizada con éxito."
       />
       {/* Modal de Contacto (ContactModal) */}
       <Modal show={showContact} onHide={() => setShowContact(false)} centered>
@@ -221,7 +221,14 @@ export const StayDetail = () => {
         <Modal.Body>
           <Form.Group controlId="mensaje">
             <Form.Label>Mensaje</Form.Label>
-            <Form.Control as="textarea" rows={3} value={mensaje} onChange={e => setMensaje(e.target.value)} placeholder="Escriba su mensaje aquí..." />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              value={mensaje}
+              onChange={e => setMensaje(e.target.value)}
+              placeholder="Escriba su mensaje aquí..."
+              style={{ resize: 'none' }}
+            />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
@@ -233,8 +240,8 @@ export const StayDetail = () => {
       <SuccessModal
         isOpen={contactado}
         onClose={handleCloseSuccessContactModal}
-        title="Título modal contacto"
-        body="Cuerpo del modal"
+        title="¡Mensaje enviado!"
+        body="Tu consulta fue enviada con éxito."
       />
     </Container>
   );
