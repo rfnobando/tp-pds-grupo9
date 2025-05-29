@@ -5,7 +5,7 @@ export const SearchBar = ({ value, onChange }) => (
     <Form.Control
       type="text"
       className="form-control form-control-lg"
-      placeholder="Buscar destino"
+      placeholder="Ej: Mar del Plata, Cafayate, Villa La Angostura"
       value={value}
       onChange={e => onChange(e.target.value)}
     />
