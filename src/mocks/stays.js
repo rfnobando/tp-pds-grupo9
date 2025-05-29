@@ -12,7 +12,9 @@ export const stays = [
     pricePerNight: 15000,
     isFeatured: true,
     rating: 4.9,
+
     hostId: 1,
+
   },
   {
     id: 2,
@@ -27,7 +29,9 @@ export const stays = [
     pricePerNight: 30000,
     isFeatured: false,
     rating: 4.7,
+
     hostId: 2,
+
   },
   {
     id: 3,
@@ -42,7 +46,9 @@ export const stays = [
     pricePerNight: 35000,
     isFeatured: true,
     rating: 4.9,
+
     hostId: 3,
+
   },
   {
     id: 4,
@@ -57,7 +63,9 @@ export const stays = [
     pricePerNight: 14000,
     isFeatured: false,
     rating: 4.5,
+
     hostId: 4,
+
   },
   {
     id: 5,
@@ -87,7 +95,9 @@ export const stays = [
     pricePerNight: 17000,
     isFeatured: true,
     rating: 5.0,
+
     hostId: 6,
+
   },
   {
     id: 7,
@@ -116,8 +126,9 @@ export const stays = [
     ],
     pricePerNight: 13000,
     isFeatured: true,
-    rating: 4.9,
+    
     hostId: 8,
+
   },
   {
     id: 9,
@@ -132,7 +143,9 @@ export const stays = [
     pricePerNight: 15500,
     isFeatured: true,
     rating: 5.0,
+
     hostId: 9,
+
   },
   {
     id: 10,

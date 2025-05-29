@@ -3,7 +3,11 @@ import { Container, Row, Col, Card, Button, Form, Badge } from 'react-bootstrap'
 import { stays } from '@/mocks'
 import { formatNumberToARS } from '@/utils'
 import { SearchBar } from '@/components/common'
+
 import { useNavigate } from 'react-router-dom'
+
+import { ARSInput } from '@/components/ui/inputs'
+
 
 export const Home = () => {
   const [busqueda, setBusqueda] = useState('')
@@ -11,7 +15,9 @@ export const Home = () => {
   const [maxPrecio, setMaxPrecio] = useState('')
   const [onlyFeatured, setOnlyFeatured] = useState(false)
   const [showTopRatedFirst, setShowTopRatedFirst] = useState(false)
+
   const navigate = useNavigate()
+
 
   const handleARSInputChange = (setValue) => (values) => {
     setValue(values.floatValue !== undefined ? values.value : '')
@@ -31,9 +37,11 @@ export const Home = () => {
     staysFiltrados.sort((left, right) => right.rating - left.rating)
   }
 
+
   const handleCardClick = (item) => {
     navigate(`/alojamiento/${item.id}`)
   }
+
 
   return (
     <Container>
@@ -59,24 +67,29 @@ export const Home = () => {
         <Col className="mb-3" xs="6" md="3" lg="2">
           <Form.Group controlId="minPrice">
             <Form.Label className="fw-semibold">Precio mínimo</Form.Label>
+
             <Form.Control
               type="number"
               min={0}
               value={minPrecio}
               placeholder="$ 0,00"
               onChange={e => setMinPrecio(e.target.value)}
+
+
             />
           </Form.Group>
         </Col>
         <Col xs="6" md="3" lg="2">
           <Form.Group controlId="maxPrice">
             <Form.Label className="fw-semibold">Precio máximo</Form.Label>
+
             <Form.Control
               type="number"
               min={0}
               value={maxPrecio}
               placeholder="$ 80.000,00"
               onChange={e => setMaxPrecio(e.target.value)}
+
             />
           </Form.Group>
         </Col>
@@ -108,7 +121,9 @@ export const Home = () => {
         {staysFiltrados.length > 0 ? (
           staysFiltrados.map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={3} className="mb-4 d-flex">
+
               <Card className="flex-fill d-flex flex-column" onClick={() => handleCardClick(item)} style={{ cursor: 'pointer' }}>
+
                 {item.isFeatured && (
                   <Badge
                     bg="warning"
