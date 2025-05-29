@@ -7,8 +7,8 @@ import { ARSInput } from '@/components/ui/inputs'
 
 export const Home = () => {
   const [busqueda, setBusqueda] = useState('')
-  const [minPrecio, setMinPrecio] = useState('0')
-  const [maxPrecio, setMaxPrecio] = useState('80000')
+  const [minPrecio, setMinPrecio] = useState('')
+  const [maxPrecio, setMaxPrecio] = useState('')
   const [onlyFeatured, setOnlyFeatured] = useState(false)
   const [showTopRatedFirst, setShowTopRatedFirst] = useState(false)
 
