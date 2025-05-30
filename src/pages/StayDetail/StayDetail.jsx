@@ -132,6 +132,28 @@ export const StayDetail = () => {
                 <p className="mb-1"><strong>Precio por noche:</strong> {formatNumberToARS(alojamiento.pricePerNight)}</p>
                 <p className="mb-1"><strong>Calificación:</strong> ★ {alojamiento.rating}</p>
                 <p className="mt-3 mb-4" style={{ color: '#717171' }}>{alojamiento.description}</p>
+                
+                {/* Sección de servicios simplificada */}
+                <div className="mb-4">
+                  <h5 className="fw-bold mb-3">Servicios disponibles</h5>
+                  <div className="d-flex flex-wrap gap-2">
+                    {alojamiento.amenities.map((amenity, index) => (
+                      <div
+                        key={index}
+                        className="px-3 py-2"
+                        style={{
+                          background: '#f7f7f7',
+                          borderRadius: 12,
+                          fontSize: 14,
+                          color: '#484848'
+                        }}
+                      >
+                        <span style={{ textTransform: 'capitalize' }}>{amenity}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <Button variant="secondary" className="me-2 mb-3" onClick={() => setShowContact(true)} style={{ backgroundColor: '#767676', color: 'white', borderRadius: 12, boxShadow: '0 2px 8px #0001' }}>
                   Contactar al anfitrión
                 </Button>

@@ -12,7 +12,8 @@ export const stays = [
     pricePerNight: 15000,
     isFeatured: true,
     rating: 4.9,
-    hostId: 1
+    hostId: 1,
+    amenities: ['wifi', 'parrilla', 'jacuzzi', 'mascotas', 'estacionamiento', 'aire acondicionado', 'calefacción']
   },
   {
     id: 2,
@@ -27,7 +28,8 @@ export const stays = [
     pricePerNight: 30000,
     isFeatured: false,
     rating: 4.7,
-    hostId: 2
+    hostId: 2,
+    amenities: ['wifi', 'aire acondicionado', 'gimnasio', 'piscina', 'seguridad 24/7', 'ascensor']
   },
   {
     id: 3,
@@ -42,7 +44,8 @@ export const stays = [
     pricePerNight: 35000,
     isFeatured: true,
     rating: 4.9,
-    hostId: 3
+    hostId: 3,
+    amenities: ['wifi', 'aire acondicionado', 'balcón', 'lavarropas', 'tv', 'cocina equipada']
   },
   {
     id: 4,
@@ -57,7 +60,8 @@ export const stays = [
     pricePerNight: 14000,
     isFeatured: false,
     rating: 4.5,
-    hostId: 4
+    hostId: 4,
+    amenities: ['wifi', 'aire acondicionado', 'tv', 'cocina equipada', 'mascotas']
   },
   {
     id: 5,
@@ -72,7 +76,8 @@ export const stays = [
     pricePerNight: 16000,
     isFeatured: false,
     rating: 4.8,
-    hostId: 5
+    hostId: 5,
+    amenities: ['wifi', 'parrilla', 'muelle', 'kayak', 'mascotas', 'estacionamiento', 'aire acondicionado']
   },
   {
     id: 6,
@@ -87,7 +92,8 @@ export const stays = [
     pricePerNight: 17000,
     isFeatured: true,
     rating: 5.0,
-    hostId: 6
+    hostId: 6,
+    amenities: ['wifi', 'piscina', 'parrilla', 'bodega', 'estacionamiento', 'aire acondicionado', 'tv']
   },
   {
     id: 7,
@@ -102,7 +108,8 @@ export const stays = [
     pricePerNight: 19000,
     isFeatured: false,
     rating: 4.8,
-    hostId: 7
+    hostId: 7,
+    amenities: ['wifi', 'parrilla', 'jacuzzi', 'mascotas', 'estacionamiento', 'calefacción', 'tv']
   },
   {
     id: 8,
@@ -117,7 +124,8 @@ export const stays = [
     pricePerNight: 13000,
     isFeatured: true,
     rating: 4.9,
-    hostId: 8
+    hostId: 8,
+    amenities: ['wifi', 'aire acondicionado', 'balcón', 'tv', 'cocina equipada', 'ascensor']
   },
   {
     id: 9,
@@ -132,7 +140,8 @@ export const stays = [
     pricePerNight: 15500,
     isFeatured: true,
     rating: 5.0,
-    hostId: 9
+    hostId: 9,
+    amenities: ['wifi', 'parrilla', 'piscina', 'estacionamiento', 'aire acondicionado', 'tv', 'cocina equipada']
   },
   {
     id: 10,
@@ -147,6 +156,7 @@ export const stays = [
     pricePerNight: 14500,
     isFeatured: false,
     rating: 4.8,
-    hostId: 10
+    hostId: 10,
+    amenities: ['wifi', 'aire acondicionado', 'tv', 'cocina equipada', 'ascensor', 'estacionamiento']
   }
 ]
