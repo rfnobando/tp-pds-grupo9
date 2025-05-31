@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { BaseTemplate } from './templates'
-import { Home, StayDetail } from './pages'
+import { Home } from './pages'
+import { StayDetail } from './pages/stays'
 import { ReservationList } from './pages/profile'
 
 export default function App () {
