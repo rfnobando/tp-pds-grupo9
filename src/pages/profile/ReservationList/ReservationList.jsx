@@ -1,19 +1,34 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, ListGroup, Badge, Button } from 'react-bootstrap'
-import { PersonFill } from 'react-bootstrap-icons'
+import { Container, ListGroup, Badge, Button, Modal, Form } from 'react-bootstrap'
+import { CheckCircle, PersonFill } from 'react-bootstrap-icons'
 import { formatDateToDMY, formatNumberToARS } from '@/utils'
 import { reservations, stays } from '@/mocks'
 import { SimpleLoader } from '@/components/ui/loaders'
 import { ResponsiveThumbnail } from './components'
 import { ConfirmModal, SuccessModal } from '@/components/modals'
+import { PrimaryButton } from '@/components/ui/buttons'
+import { StarRating } from '@/components/common'
+import { FormModal } from '@/components/forms'
 
 export const ReservationList = () => {
-  const today = new Date()
   const [reservationsWithStays, setReservationsWithStays] = useState(null)
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false)
   const [openedDeleteModalReservationId, setOpenedDeleteModalReservationId] = useState(null)
   const [isSuccessDeleteModalOpen, setIsSuccessDeleteModalOpen] = useState(false)
+  const [isAddReviewModalOpen, setIsAddReviewModalOpen] = useState(false)
+  const [openedAddReviewModalReservationId, setOpenedAddReviewModalReservationId] = useState(null)
+  const [isSuccessAddReviewModalOpen, setIsSuccessAddReviewModalOpen] = useState(false)
+  const [rating, setRating] = useState(0)
+  const [reviewMessage, setReviewMessage] = useState('')
+
+  const handleRatingChange = (newRating) => () => {
+    setRating(newRating)
+  }
+
+  const handleReviewMessageChange = (event) => {
+    setReviewMessage(event.target.value)
+  }
 
   const openConfirmDeleteModal = (reservationId) => () => {
     setIsConfirmDeleteModalOpen(true)
@@ -42,18 +57,43 @@ export const ReservationList = () => {
     setOpenedDeleteModalReservationId(null)
   }
 
+  const openAddReviewModal = (reservationId) => () => {
+    setIsAddReviewModalOpen(true)
+    setOpenedAddReviewModalReservationId(reservationId)
+  }
+
+  const closeAddReviewModal = () => {
+    setIsAddReviewModalOpen(false)
+    setOpenedAddReviewModalReservationId(null)
+    setRating(0)
+    setReviewMessage('')
+  }
+
+  const handleRatingSubmit = (event) => {
+    event.preventDefault()
+
+    const updatedReservations = reservationsWithStays.map(r => ({
+      ...r,
+      givenRating: r.id === openedAddReviewModalReservationId ? rating : r.givenRating
+    }))
+
+    setReservationsWithStays(updatedReservations)
+    setIsAddReviewModalOpen(false)
+    setIsSuccessAddReviewModalOpen(true)
+  }
+
+  const closeSuccessAddReviewModal = () => {
+    setRating(0)
+    setReviewMessage('')
+    setIsSuccessAddReviewModalOpen(false)
+    setOpenedAddReviewModalReservationId(null)
+  }
+
   const joinReservationsWithStays = () => {
-    const finalArray = reservations.map(r => {
-      const tempRow = {
-        ...r,
-        stay: { ...(stays.find(s => s.id === r.stayId)) }
-      }
-
-      const rCheckOutDate = new Date(r.checkOut)
-      tempRow.status = rCheckOutDate < today ? 'Finalizada' : 'Pendiente'
-
-      return tempRow
-    })
+    const finalArray = reservations.map(r => ({
+      ...r,
+      stay: { ...(stays.find(s => s.id === r.stayId)) }
+    }))
 
     setReservationsWithStays(finalArray)
   }
@@ -108,13 +148,30 @@ export const ReservationList = () => {
                     <div className="px-3">
                       <Button
                         onClick={openConfirmDeleteModal(r.id)}
-                        variant="danger"
+                        variant="secondary"
                         size="sm"
                         className="mt-2 mt-sm-0"
                       >
                         Cancelar
                       </Button>
                     </div>
+                  ) : r.status === 'Finalizada' ? (
+                    r.givenRating === null ? (
+                      <div className="px-3">
+                        <PrimaryButton
+                          onClick={openAddReviewModal(r.id)}
+                          size="sm"
+                          className="mt-2 mt-sm-0"
+                        >
+                          Dar reseña
+                        </PrimaryButton>
+                      </div>
+                    ) : (
+                      <div className="d-flex align-items-center px-3 mt-2 mt-sm-0 fst-italic">
+                        <CheckCircle className="me-1 text-success" />
+                        <span className="text-muted">Reseña enviada</span>
+                      </div>
+                    )
                   ) : null}
                 </ListGroup.Item>
               ))}
@@ -131,6 +188,35 @@ export const ReservationList = () => {
               onClose={closeSuccessDeleteModal}
               title="Cancelado"
               body="La reserva fue cancelada con éxito."
+            />
+            <FormModal
+              isOpen={isAddReviewModalOpen}
+              onSubmit={handleRatingSubmit}
+              onClose={closeAddReviewModal}
+              title="Dar reseña"
+              disabledSubmitButton={rating < 1 || rating > 5 || reviewMessage === ''}
+            >
+              <Form.Group className="mb-3">
+                <Form.Label className="mb-0">Calificación</Form.Label>
+                <StarRating rating={rating} onChange={handleRatingChange} />
+              </Form.Group>
+              <Form.Group controlId="review-message">
+                <Form.Label>Comentario</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  value={reviewMessage}
+                  onChange={handleReviewMessageChange}
+                  placeholder="Escriba su comentario aquí..."
+                  style={{ resize: 'none' }}
+                />
+              </Form.Group>
+            </FormModal>
+            <SuccessModal
+              isOpen={isSuccessAddReviewModalOpen}
+              onClose={closeSuccessAddReviewModal}
+              title="Reseña enviada"
+              body="Gracias por compartir tu experiencia."
             />
           </>
         ) : (

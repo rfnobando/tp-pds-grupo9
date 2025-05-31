@@ -1,0 +1,12 @@
+.star {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.empty {
+    color: #BBBBBB;
+}
+
+.filled {
+    color: #FFC107;
+}
