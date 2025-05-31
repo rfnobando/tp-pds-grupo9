@@ -22,7 +22,7 @@ export const BaseNavbar = () => {
           </Dropdown.Toggle>
           <Dropdown.Menu className="mt-2">
             <div className="px-3 pb-2 fw-semibold text-dark">
-              ¡Hola, Usuario!
+              ¡Bienvenido!
             </div>
             <Dropdown.Item as={Link} to="/profile/reservations" className="px-3">
               Mis reservas
