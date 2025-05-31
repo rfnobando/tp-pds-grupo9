@@ -1,0 +1,13 @@
+.image {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+}
+
+@media (max-width: 575.98px) {
+    .image {
+        width: 80%;
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+}

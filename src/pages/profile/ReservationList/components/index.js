@@ -1,0 +1,1 @@
+export { ResponsiveThumbnail } from './ResponsiveThumbnail/ResponsiveThumbnail'

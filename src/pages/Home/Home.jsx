@@ -114,7 +114,7 @@ export const Home = () => {
                 to={`/stays/${item.id}`}
                 className="flex-fill d-flex flex-column text-decoration-none text-reset"
               >
-                {item.isFeatured && (
+                {item.isFeatured ? (
                   <Badge
                     bg="warning"
                     text="dark"
@@ -122,7 +122,7 @@ export const Home = () => {
                   >
                     ⭐ Destacado
                   </Badge>
-                )}
+                ) : null}
                 <Card.Img variant="top" src={item.images[0]} />
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>

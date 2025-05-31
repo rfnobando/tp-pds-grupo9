@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { BaseTemplate } from './templates'
 import { Home, StayDetail } from './pages'
+import { ReservationList } from './pages/profile'
 
 export default function App () {
   return (
@@ -10,6 +11,10 @@ export default function App () {
         <Route path="stays">
           <Route index element={<Navigate to="/" replace />} />
           <Route path=":id" element={<StayDetail />} />
+        </Route>
+        <Route path="profile">
+          <Route index element={<Navigate to="/profile/reservations" replace />} />
+          <Route path="reservations" element={<ReservationList />} />
         </Route>
       </Route>
     </Routes>
