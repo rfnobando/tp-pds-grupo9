@@ -186,7 +186,7 @@ export const ReservationList = () => {
             <SuccessModal
               isOpen={isSuccessDeleteModalOpen}
               onClose={closeSuccessDeleteModal}
-              title="Cancelado"
+              title="Reserva cancelada"
               body="La reserva fue cancelada con éxito."
             />
             <FormModal
