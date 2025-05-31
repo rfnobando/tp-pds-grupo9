@@ -5,6 +5,7 @@ import { hosts } from '@/mocks';
 import { Container, Row, Col, Carousel, Button, Form, Alert, Badge, InputGroup, Modal } from 'react-bootstrap';
 import { SuccessModal } from '@/components/modals';
 import { formatNumberToARS } from '@/utils';
+import { PrimaryButton } from '@/components/ui/buttons';
 
 function calcularNoches (desde, hasta) {
   if (!desde || !hasta) return 0;
@@ -233,7 +234,7 @@ export const StayDetail = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowContact(false)}>Cancelar</Button>
-          <Button variant="primary" onClick={handleEnviarMensaje} disabled={!mensaje.trim()}>Enviar</Button>
+          <PrimaryButton onClick={handleEnviarMensaje} disabled={!mensaje.trim()}>Enviar</PrimaryButton>
         </Modal.Footer>
       </Modal>
       {/* Modal de contacto exitoso */}

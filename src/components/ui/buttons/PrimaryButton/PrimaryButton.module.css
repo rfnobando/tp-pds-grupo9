@@ -1,0 +1,11 @@
+.button {
+    background-color: #FF5A5F !important;
+}
+
+.button:hover {
+    background-color: #FF5A5F !important;
+}
+
+.disabled {
+    opacity: 0.8;
+}
