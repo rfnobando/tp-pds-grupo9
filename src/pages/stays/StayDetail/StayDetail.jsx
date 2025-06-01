@@ -133,7 +133,7 @@ export const StayDetail = () => {
                 <p className="mb-1"><strong>Precio por noche:</strong> {formatNumberToARS(alojamiento.pricePerNight)}</p>
                 <p className="mb-1"><strong>Calificación:</strong> ★ {alojamiento.rating}</p>
                 <p className="mt-3 mb-4" style={{ color: '#717171' }}>{alojamiento.description}</p>
-                
+
                 {/* Sección de servicios simplificada */}
                 <div className="mb-4">
                   <h5 className="fw-bold mb-3">Servicios disponibles</h5>
@@ -215,9 +215,9 @@ export const StayDetail = () => {
             <Form.Label>Método de pago</Form.Label>
             <Form.Select value={metodoPago} onChange={e => setMetodoPago(e.target.value)} required>
               <option value="">Seleccione un método de pago</option>
-              <option value="TC">Tarjeta de Crédito</option>
-              <option value="TD">Tarjeta de Débito</option>
-              <option value="transfer">Transferencia</option>
+              <option value="card1">Tarjeta **** **** **** 5162</option>
+              <option value="card2">Tarjeta **** **** **** 8390</option>
+              <option value="mercadopago">MercadoPago</option>
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-2" controlId="aceptarTerminos">
